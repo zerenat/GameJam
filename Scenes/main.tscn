@@ -1,3 +1,5 @@
 [gd_scene format=3 uid="uid://cyh2abn7682t"]
 
 [node name="Main" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
