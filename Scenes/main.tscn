@@ -1,15 +1,83 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyh2abn7682t"]
+[gd_scene load_steps=13 format=3 uid="uid://cyh2abn7682t"]
 
 [ext_resource type="PackedScene" uid="uid://c32oehrmywsf1" path="res://Assets/3D assets/Play_Field.glb" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://cumwaocbxgmau" path="res://Assets/3D assets/Castle.glb" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://gnkixs8qutji" path="res://Assets/3D assets/Shooting_Tower.glb" id="3_kry3j"]
 [ext_resource type="PackedScene" uid="uid://7eep3mxb1j1" path="res://Assets/3D assets/Enemy.glb" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://noeqyhud2dtu" path="res://Assets/3D assets/Stone_Walls.glb" id="5_kry3j"]
+[ext_resource type="PackedScene" uid="uid://dou2ps3pap0kk" path="res://Assets/3D assets/Crystal.glb" id="6_21xkr"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kry3j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21xkr"]
 albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_6bp64"]
+resource_name = "Crystal_Idle"
+length = 12.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_344ge"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ynf5e"]
+resource_name = "Crystal_Attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.3, 1.3, 1.3), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hptm8"]
+_data = {
+&"Crystal_Attack": SubResource("Animation_ynf5e"),
+&"Crystal_Idle": SubResource("Animation_6bp64"),
+&"RESET": SubResource("Animation_344ge")
+}
 
 [node name="Main" type="Node3D"]
 
@@ -35,3 +103,11 @@ transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, -0.004)
 transform = Transform3D(3.65413, 0, 0, 0, -4.37114e-08, -2.12428, 0, 1, -9.28552e-08, -0.053418, 1.38965, -9.82421)
 mesh = SubResource("PlaneMesh_kry3j")
 surface_material_override/0 = SubResource("StandardMaterial3D_21xkr")
+
+[node name="Crystal" parent="." instance=ExtResource("6_21xkr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0306396, 5.7666, 1.8584)
+
+[node name="Crystal" type="AnimationPlayer" parent="Crystal"]
+libraries = {
+&"": SubResource("AnimationLibrary_hptm8")
+}
