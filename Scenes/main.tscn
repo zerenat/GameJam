@@ -1,11 +1,52 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyh2abn7682t"]
+[gd_scene load_steps=9 format=3 uid="uid://cyh2abn7682t"]
 
 [ext_resource type="PackedScene" uid="uid://c32oehrmywsf1" path="res://Assets/3D assets/Play_Field.glb" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://cumwaocbxgmau" path="res://Assets/3D assets/Castle.glb" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://gnkixs8qutji" path="res://Assets/3D assets/Shooting_Tower.glb" id="3_kry3j"]
 [ext_resource type="PackedScene" uid="uid://7eep3mxb1j1" path="res://Assets/3D assets/Enemy.glb" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://noeqyhud2dtu" path="res://Assets/3D assets/Stone_Walls.glb" id="5_kry3j"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jjvhh"]
+sky_top_color = Color(0.590347, 0.656566, 0.748828, 1)
+sky_horizon_color = Color(0.882635, 0.89144, 0.905506, 1)
+ground_horizon_color = Color(0.882635, 0.89144, 0.905506, 1)
+
+[sub_resource type="Sky" id="Sky_kry3j"]
+sky_material = SubResource("ProceduralSkyMaterial_jjvhh")
+
+[sub_resource type="Environment" id="Environment_21xkr"]
+background_mode = 1
+background_color = Color(0.480754, 0.811339, 1, 1)
+sky = SubResource("Sky_kry3j")
+ambient_light_source = 1
+tonemap_mode = 2
+ssao_enabled = true
+ssao_radius = 2.72
+ssao_intensity = 4.95
+ssao_horizon = 0.0
+ssao_sharpness = 1.0
+sdfgi_enabled = true
+sdfgi_energy = 0.4
+glow_intensity = 5.21
+fog_light_color = Color(0.465355, 0.595705, 0.394708, 1)
+fog_density = 0.0015
+fog_sky_affect = 0.923
+volumetric_fog_density = 0.0038
 
 [node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_21xkr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.771625, 0.212327, -0.599594, 0, 0.942641, 0.333807, 0.636078, -0.257574, 0.727365, 0, 7.28766, 0)
+light_color = Color(0.582734, 0.580562, 0.484213, 1)
+light_energy = 4.0
+light_angular_distance = 1.0
+shadow_enabled = true
+shadow_normal_bias = 3.449
+shadow_blur = 1.58
+directional_shadow_pancake_size = 0.1
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 28.51, 39.704, 29.105)
@@ -21,3 +62,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.83)
 
 [node name="Enemy" parent="." instance=ExtResource("4_jjvhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.127)
+
+[node name="Stone_Walls" parent="." instance=ExtResource("5_kry3j")]
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, -0.004)
