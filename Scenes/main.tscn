@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://byar7pxdk55ax"]
+[gd_scene load_steps=10 format=3 uid="uid://byar7pxdk55ax"]
 
 [ext_resource type="PackedScene" uid="uid://d0bhddcrgymwp" path="res://Assets/3D assets/Castle.blend" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://ditfb7c5a5gml" path="res://Assets/3D assets/Enemy.blend" id="2_bo1nx"]
@@ -29,6 +29,9 @@ glow_enabled = true
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_21xkr"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_8gbba"]
+size = Vector3(1.17, 2.105, 1)
+
 [node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -58,7 +61,13 @@ mesh = SubResource("CylinderMesh_21xkr")
 [node name="Castle" parent="." instance=ExtResource("1_jjgbg")]
 transform = Transform3D(1.56193, 0, 0, 0, 1.61989, 0, 0, 0, 1.64221, -0.0884737, -0.00278952, -7.17696)
 
-[node name="Enemy" parent="." instance=ExtResource("2_bo1nx")]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="Enemy" parent="CharacterBody3D" instance=ExtResource("2_bo1nx")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0429688, 0, 7.93933)
 script = ExtResource("3_8gbba")
-target = NodePath("../Castle")
+target = NodePath("../../Castle")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.676163, 7.9164)
+shape = SubResource("BoxShape3D_8gbba")
