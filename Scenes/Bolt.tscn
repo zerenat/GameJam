@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://curqru7comlio"]
 
-[ext_resource type="Texture2D" uid="uid://dfhl13fk6atl6" path="res://Assets/3D assets/spark_03.png" id="1_0y4va"]
+[ext_resource type="Texture2D" uid="uid://c6glvsu3t2a38" path="res://Assets/3D assets/Particles/fire_01.png" id="1_0y4va"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0y4va"]
 transparency = 1
@@ -50,7 +50,6 @@ material_override = SubResource("StandardMaterial3D_0y4va")
 mesh = SubResource("SphereMesh_uugkp")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0158844, 0.0282745, 0)
 material_override = SubResource("StandardMaterial3D_uugkp")
 amount = 40
 process_material = SubResource("ParticleProcessMaterial_qfbap")
