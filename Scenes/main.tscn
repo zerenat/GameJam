@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cyh2abn7682t"]
+[gd_scene load_steps=17 format=3 uid="uid://cyh2abn7682t"]
 
 [ext_resource type="PackedScene" uid="uid://c32oehrmywsf1" path="res://Assets/3D assets/Play_Field.glb" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://cumwaocbxgmau" path="res://Assets/3D assets/Castle.glb" id="2_jjvhh"]
@@ -79,6 +79,26 @@ _data = {
 &"RESET": SubResource("Animation_344ge")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_21xkr"]
+animation = &"Crystal_Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6bp64"]
+animation = &"Crystal_Idle"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_344ge"]
+filters = [".:rotation"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ynf5e"]
+graph_offset = Vector2(-193.628, -78.4914)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_6bp64")
+nodes/Animation/position = Vector2(20, 40)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_21xkr")
+"nodes/Animation 2/position" = Vector2(20, 220)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_344ge")
+nodes/OneShot/position = Vector2(280, 20)
+nodes/output/position = Vector2(480, 20)
+node_connections = [&"OneShot", 0, &"Animation", &"OneShot", 1, &"Animation 2", &"output", 0, &"OneShot"]
+
 [node name="Main" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -111,3 +131,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0306396, 5.7666, 1.8584)
 libraries = {
 &"": SubResource("AnimationLibrary_hptm8")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="Crystal/Crystal"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeBlendTree_ynf5e")
+anim_player = NodePath("..")
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
