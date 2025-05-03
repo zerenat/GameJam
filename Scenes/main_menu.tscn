@@ -1,17 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://dai4ejd0gcx1v"]
+[gd_scene load_steps=12 format=3 uid="uid://dai4ejd0gcx1v"]
 
 [ext_resource type="Script" uid="uid://ebgpub8h4alm" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="PackedScene" uid="uid://da25or04alwqn" path="res://Scenes/settings_menu.tscn" id="2_1ehe0"]
+[ext_resource type="Script" uid="uid://b1p7wrpsbv3fs" path="res://Scripts/camera_animation.gd" id="2_48xlc"]
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_1ehe0"]
+size = Vector2(30, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48xlc"]
+albedo_color = Color(0.0784314, 0.447059, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ce3w2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ehe0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ce3w2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n45e2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_opfnp"]
+
+[sub_resource type="Environment" id="Environment_cp0ys"]
+background_energy_multiplier = 0.36
+ssao_enabled = true
+ssao_intensity = 1.27
+ssao_detail = 0.98
+ssil_enabled = true
+
+[node name="MainMenu" type="Node3D"]
+
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_28flt")
 
-[node name="NewGame" type="Button" parent="."]
+[node name="NewGame" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 144.0
 offset_top = 217.0
@@ -19,16 +42,17 @@ offset_right = 365.0
 offset_bottom = 257.0
 text = "New Game"
 
-[node name="Settings" type="Button" parent="."]
+[node name="Settings" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 144.0
 offset_top = 286.0
 offset_right = 365.0
 offset_bottom = 326.0
+tooltip_text = "You're a setting"
 text = "Settings
 "
 
-[node name="Exit" type="Button" parent="."]
+[node name="Exit" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 144.0
 offset_top = 353.0
@@ -36,3 +60,55 @@ offset_right = 365.0
 offset_bottom = 393.0
 text = "Exit
 "
+
+[node name="SettingsMenu" parent="UI" instance=ExtResource("2_1ehe0")]
+offset_left = 505.0
+offset_top = 217.0
+offset_right = 822.0
+offset_bottom = 393.0
+
+[node name="CameraAnimation" type="Node3D" parent="."]
+script = ExtResource("2_48xlc")
+
+[node name="Pivot" type="Node3D" parent="CameraAnimation"]
+
+[node name="Camera3D" type="Camera3D" parent="CameraAnimation/Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.86167, 8)
+projection = 1
+size = 6.634
+near = 0.007
+far = 18.86
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraAnimation"]
+mesh = SubResource("PlaneMesh_1ehe0")
+surface_material_override/0 = SubResource("StandardMaterial3D_48xlc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CameraAnimation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3)
+mesh = SubResource("BoxMesh_ce3w2")
+surface_material_override/0 = SubResource("StandardMaterial3D_1ehe0")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CameraAnimation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -1)
+mesh = SubResource("BoxMesh_ce3w2")
+surface_material_override/0 = SubResource("StandardMaterial3D_ce3w2")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="CameraAnimation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 2)
+mesh = SubResource("BoxMesh_ce3w2")
+surface_material_override/0 = SubResource("StandardMaterial3D_n45e2")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="CameraAnimation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+mesh = SubResource("BoxMesh_ce3w2")
+surface_material_override/0 = SubResource("StandardMaterial3D_opfnp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00988, 0)
+light_energy = 2.471
+shadow_enabled = true
+omni_range = 5.748
+omni_attenuation = 0.865
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cp0ys")
