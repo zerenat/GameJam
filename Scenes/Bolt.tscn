@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://curqru7comlio"]
+
+[ext_resource type="Texture2D" uid="uid://dfhl13fk6atl6" path="res://Assets/3D assets/spark_03.png" id="1_0y4va"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0y4va"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.682353, 1, 0.164706)
+emission_enabled = true
+emission = Color(1, 0.55976, 0.984634, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_uugkp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uugkp"]
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.9297, 0.458392, 1, 1)
+albedo_texture = ExtResource("1_0y4va")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qfbap"]
+lifetime_randomness = 0.2
+emission_shape = 1
+emission_sphere_radius = 0.1
+angle_min = 1.07288e-05
+angle_max = 360.0
+gravity = Vector3(1, 0, 0)
+turbulence_enabled = true
+turbulence_noise_speed_random = 4.0
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.0
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_rykdy"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.00189209, 0, 0)
+material_override = SubResource("StandardMaterial3D_0y4va")
+mesh = SubResource("SphereMesh_uugkp")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0158844, 0.0282745, 0)
+material_override = SubResource("StandardMaterial3D_uugkp")
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_qfbap")
+draw_pass_1 = SubResource("QuadMesh_rykdy")
