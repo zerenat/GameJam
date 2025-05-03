@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3hx1plppyc82"]
+[gd_scene load_steps=5 format=3 uid="uid://b3hx1plppyc82"]
+
+[ext_resource type="Script" uid="uid://kxaq0baegxio" path="res://Scripts/tower.gd" id="1_ndpwd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6jpva"]
 size = Vector3(1, 2, 1)
@@ -6,10 +8,22 @@ size = Vector3(1, 2, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ndpwd"]
 size = Vector3(1, 2, 1)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mh5eo"]
+height = 1.0
+radius = 3.0
+
 [node name="Tower" type="StaticBody3D"]
+script = ExtResource("1_ndpwd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_6jpva")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_ndpwd")
+
+[node name="DetectionArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("CylinderShape3D_mh5eo")

@@ -1,7 +1,5 @@
-[gd_scene load_steps=15 format=3 uid="uid://cyh2abn7682t"]
+[gd_scene load_steps=12 format=3 uid="uid://cyh2abn7682t"]
 
-[ext_resource type="Script" uid="uid://kxaq0baegxio" path="res://Scripts/tower.gd" id="1_jjgbg"]
-[ext_resource type="Script" uid="uid://dom5i7fy85g2m" path="res://Scripts/enemy.gd" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://myewnpwt2f10" path="res://Scenes/enemy_1.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://b3hx1plppyc82" path="res://Scenes/tower.tscn" id="4_jjvhh"]
 
@@ -79,10 +77,6 @@ _data = {
 &"movement 2": SubResource("Animation_8gbba")
 }
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_jjvhh"]
-height = 1.0
-radius = 3.0
-
 [node name="Main" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -107,7 +101,6 @@ mesh = SubResource("BoxMesh_jjgbg")
 
 [node name="Enemy 1" parent="." instance=ExtResource("3_8gbba")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78569, 0.5, 2.46498)
-script = ExtResource("2_bo1nx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy 1"]
 libraries = {
@@ -117,11 +110,3 @@ autoplay = "movement 2"
 
 [node name="Tower2" parent="." instance=ExtResource("4_jjvhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_jjgbg")
-
-[node name="Area3D2" type="Area3D" parent="Tower2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Tower2/Area3D2"]
-shape = SubResource("CylinderShape3D_jjvhh")
