@@ -42,7 +42,7 @@ collision_bounce = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_rykdy"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Bolt" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.00189209, 0, 0)
