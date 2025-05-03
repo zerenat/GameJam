@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://da25or04alwqn"]
+
+[ext_resource type="Script" uid="uid://c5iyhn4beufu7" path="res://Scripts/settings_menu.gd" id="1_icv2g"]
+
+[node name="SettingsMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -555.0
+offset_top = 267.0
+offset_right = -238.0
+offset_bottom = 443.0
+script = ExtResource("1_icv2g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 317.0
+offset_bottom = 176.0
+color = Color(0, 0, 0, 0.341176)
+
+[node name="SFXVolumeSlider" type="HSlider" parent="ColorRect"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 120.0
+offset_right = 287.0
+offset_bottom = 136.0
+
+[node name="Label" type="Label" parent="ColorRect/SFXVolumeSlider"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -29.0
+offset_right = 110.0
+offset_bottom = -6.0
+text = "SFX Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="ColorRect"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 56.0
+offset_right = 287.0
+offset_bottom = 72.0
+
+[node name="Label" type="Label" parent="ColorRect/MusicVolumeSlider"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -29.0
+offset_right = 110.0
+offset_bottom = -6.0
+text = "Music Volume"

@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://cy32013h2e8no"]
+
+[ext_resource type="Script" uid="uid://ebgpub8h4alm" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="PackedScene" path="res://Scenes/settings_menu.tscn" id="2_1ehe0"]
+[ext_resource type="Script" uid="uid://b1p7wrpsbv3fs" path="res://Scripts/camera_animation.gd" id="2_48xlc"]
+[ext_resource type="PackedScene" path="res://Scenes/simon_world_placeholder.tscn" id="4_n45e2"]
+[ext_resource type="PackedScene" uid="uid://gnkixs8qutji" path="res://Assets/3D assets/Shooting_Tower.glb" id="5_n45e2"]
+[ext_resource type="PackedScene" uid="uid://dou2ps3pap0kk" path="res://Assets/3D assets/Crystal.glb" id="6_opfnp"]
+
+[sub_resource type="Environment" id="Environment_cp0ys"]
+background_energy_multiplier = 0.36
+ssao_enabled = true
+ssao_intensity = 1.27
+ssao_detail = 0.98
+ssil_enabled = true
+
+[node name="MainMenu" type="Node3D"]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_28flt")
+
+[node name="NewGame" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 217.0
+offset_right = 365.0
+offset_bottom = 257.0
+text = "New Game"
+
+[node name="Settings" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 286.0
+offset_right = 365.0
+offset_bottom = 326.0
+tooltip_text = "You're a setting"
+text = "Settings
+"
+
+[node name="Exit" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 353.0
+offset_right = 365.0
+offset_bottom = 393.0
+text = "Exit
+"
+
+[node name="SettingsMenu" parent="UI" instance=ExtResource("2_1ehe0")]
+offset_left = 505.0
+offset_top = 217.0
+offset_right = 822.0
+offset_bottom = 393.0
+
+[node name="CameraAnimation" type="Node3D" parent="."]
+script = ExtResource("2_48xlc")
+
+[node name="Pivot" type="Node3D" parent="CameraAnimation"]
+
+[node name="Camera3D" type="Camera3D" parent="CameraAnimation/Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 7.62539, 8)
+projection = 1
+size = 9.366
+near = 0.007
+far = 43.94
+
+[node name="World" parent="CameraAnimation" instance=ExtResource("4_n45e2")]
+
+[node name="Shooting_Tower" parent="CameraAnimation" instance=ExtResource("5_n45e2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.12304)
+
+[node name="Crystal" parent="CameraAnimation" instance=ExtResource("6_opfnp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.15213, 1.95798)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5089, 4.1173)
+light_energy = 6.425
+shadow_enabled = true
+omni_range = 9.148
+omni_attenuation = 0.865
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cp0ys")
