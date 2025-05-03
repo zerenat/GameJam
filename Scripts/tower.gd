@@ -1,10 +1,10 @@
-extends StaticBody3D
+extends Node3D
 
 # Define the signal that the enemy will hear to prompt it to take damage
-signal enemy_takes_damage(enemy, damage_amount)
+signal enemy_takes_damage(current_target, damage_amount)
 
-var current_target = null # This will hold the current enemy being focused on
-#var enemies_in_range = [] # This is an array
+var current_target = null # this variable stores a reference to the enemy that the tower is currently targeting
+var enemies_in_range = [] # This is an array
 var damage_interval = 1.0 # Seconds where the tower deals damage at each interval. So every 1s, the tower will deal damage to the enemy.
 var damage_amount = 10
 
@@ -25,21 +25,31 @@ func _ready():
 
 func _on_body_entered(body):
 	# If there's no current target, set the first enemy to be the target
-	if current_target == null:
-		current_target = body
-		print(current_target.name, " is now the target.")
+	if body.is_in_group("enemies"):
+		enemies_in_range.append(body)
+		if current_target == null:
+			current_target = body # store the enemy ref
+			print(current_target.name, " is now the target.")
+			#emit_signal("enemy_takes_damage", current_target, 10)
+			self.enemy_takes_damage.connect(body._on_tower_enemy_takes_damage)
+		
 		
 func _on_body_exited(body):
 	# If the target leaves the area, reset the target and wait for next enemy
+	if body in enemies_in_range:
+		enemies_in_range.erase(body)
+	
 	if body == current_target:
 		print(current_target.name, " is no longer the target")
 		current_target = null
 		
+		if enemies_in_range.size() > 0:
+			current_target= enemies_in_range[0]
+			print(current_target.name, " is now the new target.")
 		
 
 func _on_timer_timeout():
-	if current_target!= null and is_instance_valid(current_target): # If there's a valid target
-		current_target.take_damage(damage_amount)
+	if current_target != null and is_instance_valid(current_target): # If there's a valid target
+		# Emit the signal when the timer times out
+		emit_signal("enemy_takes_damage", current_target, damage_amount)
 		
-		if current_target.health <= 0:
-			current_target = null

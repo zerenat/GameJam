@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cy32013h2e8no"]
+[gd_scene load_steps=8 format=3 uid="uid://mqugijbh610k"]
 
-[ext_resource type="Script" uid="uid://ebgpub8h4alm" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_28flt"]
 [ext_resource type="PackedScene" path="res://Scenes/settings_menu.tscn" id="2_1ehe0"]
-[ext_resource type="Script" uid="uid://b1p7wrpsbv3fs" path="res://Scripts/camera_animation.gd" id="2_48xlc"]
-[ext_resource type="PackedScene" path="res://Scenes/simon_world_placeholder.tscn" id="4_n45e2"]
+[ext_resource type="Script" path="res://Scripts/camera_animation.gd" id="2_48xlc"]
+[ext_resource type="PackedScene" uid="uid://b83ipelndatxe" path="res://Scenes/simon_world_placeholder.tscn" id="4_n45e2"]
 [ext_resource type="PackedScene" uid="uid://gnkixs8qutji" path="res://Assets/3D assets/Shooting_Tower.glb" id="5_n45e2"]
 [ext_resource type="PackedScene" uid="uid://dou2ps3pap0kk" path="res://Assets/3D assets/Crystal.glb" id="6_opfnp"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://5nkbv10agfh5"]
+[gd_scene load_steps=6 format=3 uid="uid://b83ipelndatxe"]
 
 [ext_resource type="PackedScene" uid="uid://cumwaocbxgmau" path="res://Assets/3D assets/Castle.glb" id="1_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://c32oehrmywsf1" path="res://Assets/3D assets/Play_Field.glb" id="2_8j60k"]
