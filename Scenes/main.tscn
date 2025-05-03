@@ -1,61 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyh2abn7682t"]
+[gd_scene load_steps=5 format=3 uid="uid://cyh2abn7682t"]
 
-[ext_resource type="PackedScene" uid="uid://d0bhddcrgymwp" path="res://Assets/3D assets/Castle.blend" id="1_jjgbg"]
-[ext_resource type="PackedScene" uid="uid://ditfb7c5a5gml" path="res://Assets/3D assets/Enemy.blend" id="2_bo1nx"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bo1nx"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_8gbba"]
-sky_material = SubResource("ProceduralSkyMaterial_bo1nx")
-
-[sub_resource type="Environment" id="Environment_jjvhh"]
-background_mode = 1
-background_color = Color(0.532208, 0.896997, 1, 1)
-background_energy_multiplier = 0.75
-sky = SubResource("Sky_8gbba")
-ambient_light_source = 1
-ambient_light_color = Color(0.808998, 0.808998, 0.808998, 1)
-ambient_light_energy = 0.75
-tonemap_mode = 2
-ssao_enabled = true
-sdfgi_enabled = true
-sdfgi_energy = 0.5
-glow_enabled = true
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_kry3j"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_21xkr"]
+[ext_resource type="PackedScene" uid="uid://c32oehrmywsf1" path="res://Assets/3D assets/Play_Field.glb" id="1_8gbba"]
+[ext_resource type="PackedScene" uid="uid://cumwaocbxgmau" path="res://Assets/3D assets/Castle.glb" id="2_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://gnkixs8qutji" path="res://Assets/3D assets/Shooting_Tower.glb" id="3_kry3j"]
+[ext_resource type="PackedScene" uid="uid://7eep3mxb1j1" path="res://Assets/3D assets/Enemy.glb" id="4_jjvhh"]
 
 [node name="Main" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_jjvhh")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.833886, 0.351075, -0.425888, 0, 0.771625, 0.636078, 0.551937, -0.530417, 0.643447, 0, 14.0771, 0)
-shadow_enabled = true
-shadow_normal_bias = 0.0
-shadow_blur = 0.5
-directional_shadow_blend_splits = true
-directional_shadow_max_distance = 80.0
-directional_shadow_pancake_size = 5.0
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 28.51, 39.704, 29.105)
-fov = 19.8
+fov = 22.8
 
-[node name="Ground" type="MeshInstance3D" parent="."]
-transform = Transform3D(7.90337, 0, 0, 0, 8.19666, 0, 0, 0, 8.30956, 0.0872254, 0.0117895, 0.306348)
-mesh = SubResource("PlaneMesh_kry3j")
+[node name="Play_Field" parent="." instance=ExtResource("1_8gbba")]
 
-[node name="Tower" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 1.66802, 0, 0, 0, 2, 0, 1.46523, 2.17)
-mesh = SubResource("CylinderMesh_21xkr")
+[node name="Castle" parent="." instance=ExtResource("2_jjvhh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -9.473)
 
-[node name="Castle" parent="." instance=ExtResource("1_jjgbg")]
-transform = Transform3D(1.56193, 0, 0, 0, 1.61989, 0, 0, 0, 1.64221, -0.0884737, -0.00278952, -7.17696)
+[node name="Shooting_Tower" parent="." instance=ExtResource("3_kry3j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.83)
 
-[node name="Enemy" parent="." instance=ExtResource("2_bo1nx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0429688, 0, 7.93933)
+[node name="Enemy" parent="." instance=ExtResource("4_jjvhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.127)
