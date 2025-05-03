@@ -3,6 +3,9 @@ extends Node3D
 # Define the signal that the enemy will hear to prompt it to take damage
 signal enemy_takes_damage(current_target, damage_amount)
 
+@onready var crystal_animation_tree: AnimationTree = $Shooting_Tower/Crystal/CrystalAnimationPlayer/CrystalAnimationTree
+
+
 var current_target = null # this variable stores a reference to the enemy that the tower is currently targeting
 var enemies_in_range = [] # This is an array
 var damage_interval = 1.0 # Seconds where the tower deals damage at each interval. So every 1s, the tower will deal damage to the enemy.
@@ -31,7 +34,6 @@ func _on_body_entered(body):
 			current_target = body # store the enemy ref
 			print(current_target.name, " is now the target.")
 			#emit_signal("enemy_takes_damage", current_target, 10)
-			self.enemy_takes_damage.connect(body._on_tower_enemy_takes_damage)
 		
 		
 func _on_body_exited(body):
@@ -45,11 +47,15 @@ func _on_body_exited(body):
 		
 		if enemies_in_range.size() > 0:
 			current_target= enemies_in_range[0]
-			print(current_target.name, " is now the new target.")
+			print(current_target)
 		
 
 func _on_timer_timeout():
 	if current_target != null and is_instance_valid(current_target): # If there's a valid target
 		# Emit the signal when the timer times out
+		
 		emit_signal("enemy_takes_damage", current_target, damage_amount)
 		
+		# Play the OneShot attack animation
+		if crystal_animation_tree != null:
+			crystal_animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

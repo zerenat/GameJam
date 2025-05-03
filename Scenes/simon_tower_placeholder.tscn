@@ -82,7 +82,7 @@ filter_enabled = true
 filters = [".:scale"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ou3m2"]
-graph_offset = Vector2(-265.766, -45.3217)
+graph_offset = Vector2(-103.218, -59.3884)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_6bp64")
 nodes/Animation/position = Vector2(40, 20)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_21xkr")
