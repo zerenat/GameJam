@@ -1,23 +1,3 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyh2abn7682t"]
-
-[ext_resource type="PackedScene" uid="uid://curqru7comlio" path="res://Scenes/Bolt.tscn" id="1_jjgbg"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo1nx"]
-transparency = 1
-blend_mode = 1
-vertex_color_use_as_albedo = true
-albedo_color = Color(1, 0.682353, 1, 0.164706)
-emission_enabled = true
-emission = Color(1, 0.55976, 0.984634, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_8gbba"]
+[gd_scene format=3 uid="uid://cyh2abn7682t"]
 
 [node name="Main" type="Node3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.00189209, 0, 0)
-material_override = SubResource("StandardMaterial3D_bo1nx")
-mesh = SubResource("SphereMesh_8gbba")
-
-[node name="Node3D" parent="." instance=ExtResource("1_jjgbg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00189209, 0, 0)
