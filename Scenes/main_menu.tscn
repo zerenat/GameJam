@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://dai4ejd0gcx1v"]
+
+[ext_resource type="Script" uid="uid://ebgpub8h4alm" path="res://Scripts/main_menu.gd" id="1_28flt"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_28flt")
+
+[node name="NewGame" type="Button" parent="."]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 217.0
+offset_right = 365.0
+offset_bottom = 257.0
+text = "New Game"
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 286.0
+offset_right = 365.0
+offset_bottom = 326.0
+text = "Settings
+"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 353.0
+offset_right = 365.0
+offset_bottom = 393.0
+text = "Exit
+"
