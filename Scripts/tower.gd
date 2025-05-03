@@ -1,5 +1,8 @@
 extends StaticBody3D
 
+# Define the signal that the enemy will hear to prompt it to take damage
+signal enemy_takes_damage(enemy, damage_amount)
+
 var current_target = null # This will hold the current enemy being focused on
 #var enemies_in_range = [] # This is an array
 var damage_interval = 1.0 # Seconds where the tower deals damage at each interval. So every 1s, the tower will deal damage to the enemy.

@@ -1,0 +1,112 @@
+[gd_scene load_steps=12 format=3 uid="uid://cyoh1prrn46g4"]
+
+[ext_resource type="PackedScene" uid="uid://myewnpwt2f10" path="res://Scenes/enemy_1.tscn" id="1_2hjnk"]
+[ext_resource type="PackedScene" uid="uid://b3hx1plppyc82" path="res://Scenes/tower.tscn" id="2_7cvlx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7u77a"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_jjgbg"]
+sky_material = SubResource("ProceduralSkyMaterial_7u77a")
+
+[sub_resource type="Environment" id="Environment_bo1nx"]
+background_mode = 2
+sky = SubResource("Sky_jjgbg")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7u77a"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jjgbg"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="Animation" id="Animation_bo1nx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.78569, 0.5, 2.46498)]
+}
+
+[sub_resource type="Animation" id="Animation_jjgbg"]
+resource_name = "movement"
+length = 4.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-2.78569, 0.5, 2.46498), Vector3(2.97642, 0.5, 2.46498)]
+}
+
+[sub_resource type="Animation" id="Animation_8gbba"]
+resource_name = "movement 2"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-4.47356, 0.5, 1.45931), Vector3(4.59279, 0.5, 1.45931)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8gbba"]
+_data = {
+&"RESET": SubResource("Animation_bo1nx"),
+&"movement": SubResource("Animation_jjgbg"),
+&"movement 2": SubResource("Animation_8gbba")
+}
+
+[node name="Main" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.735822, -0.247162, 0.630458, -0.00197397, 0.930224, 0.366986, -0.677172, -0.271281, 0.683992, 4.03968, 2.84893, 4.40389)
+fov = 72.9465
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bo1nx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_7u77a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_jjgbg")
+
+[node name="Enemy 1" parent="." instance=ExtResource("1_2hjnk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78569, 0.5, 2.46498)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy 1"]
+libraries = {
+&"": SubResource("AnimationLibrary_8gbba")
+}
+autoplay = "movement 2"
+
+[node name="Tower2" parent="." instance=ExtResource("2_7cvlx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
