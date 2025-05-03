@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyh2abn7682t"]
+[gd_scene load_steps=9 format=3 uid="uid://byar7pxdk55ax"]
 
 [ext_resource type="PackedScene" uid="uid://d0bhddcrgymwp" path="res://Assets/3D assets/Castle.blend" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://ditfb7c5a5gml" path="res://Assets/3D assets/Enemy.blend" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://d0yh7qnbue75u" path="res://Scripts/enemy.gd" id="3_8gbba"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bo1nx"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -59,3 +60,5 @@ transform = Transform3D(1.56193, 0, 0, 0, 1.61989, 0, 0, 0, 1.64221, -0.0884737,
 
 [node name="Enemy" parent="." instance=ExtResource("2_bo1nx")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0429688, 0, 7.93933)
+script = ExtResource("3_8gbba")
+target = NodePath("../Castle")
