@@ -10,4 +10,4 @@ func _on_tower_enemy_takes_damage(enemy: Variant, damage_amount: Variant) -> voi
 		health = health - damage_amount
 		print(health)
 	elif health <= 0:
-			print("YOU DIED!")
+			print("DEAD!")
