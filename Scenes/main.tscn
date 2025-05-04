@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://byar7pxdk55ax"]
+[gd_scene load_steps=11 format=3 uid="uid://byar7pxdk55ax"]
 
 [ext_resource type="PackedScene" uid="uid://d0bhddcrgymwp" path="res://Assets/3D assets/Castle.blend" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://ditfb7c5a5gml" path="res://Assets/3D assets/Enemy.blend" id="2_bo1nx"]
@@ -29,8 +29,15 @@ glow_enabled = true
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_21xkr"]
 
+[sub_resource type="Curve3D" id="Curve3D_8gbba"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.072782, 0, 6.32036, 0.248784, -0.115507, 0.541456, -0.248784, 0.115507, -0.541456, -0.0444064, 0, 4.0002, 0.172325, 0.165473, 0.68341, -0.172325, -0.165473, -0.68341, -3.39358, 0.0765438, 2.06974, -0.320417, -0.583138, 0.389681, 0.320417, 0.583138, -0.389681, -3.25104, 0.10157, -0.789428, -0.279395, -0.157753, 0.896273, 0.279395, 0.157753, -0.896273, -0.00778913, 0, -2.99389, 0, 0, 0, 0, 0, 0, -0.0987372, 0, -6.44112),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_8gbba"]
-size = Vector3(1.17, 2.105, 1)
+size = Vector3(1.17, 0.998418, 1)
 
 [node name="Main" type="Node3D"]
 
@@ -55,19 +62,27 @@ transform = Transform3D(7.90337, 0, 0, 0, 8.19666, 0, 0, 0, 8.30956, 0.0872254, 
 mesh = SubResource("PlaneMesh_kry3j")
 
 [node name="Tower" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 1.66802, 0, 0, 0, 2, 0, 1.46523, 2.17)
+transform = Transform3D(2, 0, 0, 0, 1.66802, 0, 0, 0, 2, 0, 1.46523, 1.23305)
 mesh = SubResource("CylinderMesh_21xkr")
 
 [node name="Castle" parent="." instance=ExtResource("1_jjgbg")]
 transform = Transform3D(1.56193, 0, 0, 0, 1.61989, 0, 0, 0, 1.64221, -0.0884737, -0.00278952, -7.17696)
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_8gbba")
 
-[node name="Enemy" parent="CharacterBody3D" instance=ExtResource("2_bo1nx")]
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(0.436487, 0.00468769, 0.899687, 0.13381, 0.98852, -0.0700688, -0.889695, 0.150973, 0.430851, -0.705243, 0.0884874, 3.53876)
+progress = 3.16277
+
+[node name="Enemy" type="CharacterBody3D" parent="Path3D/PathFollow3D"]
+transform = Transform3D(0.998735, 0, -0.0504448, 0, 1.00001, 0, 0.0504449, 0, 0.998737, 0.24614, 0, -6.31605)
+
+[node name="Enemy" parent="Path3D/PathFollow3D/Enemy" instance=ExtResource("2_bo1nx")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0429688, 0, 7.93933)
 script = ExtResource("3_8gbba")
-target = NodePath("../../Castle")
+target = NodePath("../../../../Castle")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.676163, 7.9164)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/PathFollow3D/Enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500196, 7.9164)
 shape = SubResource("BoxShape3D_8gbba")
