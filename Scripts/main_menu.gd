@@ -15,9 +15,10 @@ func _on_new_game_pressed() -> void:
 	settings_menu.visible = false
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
+
 func _on_settings_pressed() -> void:
 	print("Open Settings")
-	if settings_menu.visible:
+	if settings_menu.visible == true:
 		settings_menu.visible = false
 	else:
 		settings_menu.visible = true
