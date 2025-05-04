@@ -72,7 +72,7 @@ transform = Transform3D(1.56193, 0, 0, 0, 1.61989, 0, 0, 0, 1.64221, -0.0884737,
 curve = SubResource("Curve3D_8gbba")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.436487, 0.00468769, 0.899687, 0.13381, 0.98852, -0.0700688, -0.889695, 0.150973, 0.430851, -0.705243, 0.0884874, 3.53876)
+transform = Transform3D(0.436487, 0.00468773, 0.899687, 0.13381, 0.98852, -0.0700688, -0.889695, 0.150973, 0.430851, -0.705242, 0.0884874, 3.53875)
 progress = 3.16277
 
 [node name="Enemy" type="CharacterBody3D" parent="Path3D/PathFollow3D"]

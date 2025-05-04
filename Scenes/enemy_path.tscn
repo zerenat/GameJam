@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw6guldehdng0"]
+
+[ext_resource type="Script" uid="uid://ramcnqr74wl8" path="res://Scripts/enemy_path.gd" id="1_vfsvd"]
+
+[sub_resource type="Curve3D" id="Curve3D_l0x3t"]
+closed = true
+_data = {
+"points": PackedVector3Array(-1.2202, -0.376182, 0.539582, 1.2202, 0.376182, -0.539582, -2.98781, 0, -1.91344, -2.03798, 0.458219, -0.857418, 2.03798, -0.458219, 0.857418, 2.74808, 0, -1.85129, 0.588166, 0.354029, -0.539671, -0.588166, -0.354029, 0.539671, 2.83687, 0, 1.92232, 1.22797, -0.596165, 1.03467, -1.22797, 0.596165, -1.03467, -2.95229, 0, 1.9312),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_l0x3t"]
+
+[node name="EnemyPath" type="Node3D"]
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_l0x3t")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-0.186087, 0.0929333, -0.978112, -0.0460639, 0.993575, 0.103167, 0.981434, 0.0642545, -0.180615, 1.31965, 0.230614, -2.27143)
+progress = 4.40629
+
+[node name="Cube" type="MeshInstance3D" parent="Path3D/PathFollow3D"]
+mesh = SubResource("BoxMesh_l0x3t")
+script = ExtResource("1_vfsvd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.77724, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.767333, -0.484888, 0.419624, -1.49012e-08, 0.654385, 0.756162, -0.641249, -0.580228, 0.502131, 3.7442, 3.8143, 2.80602)
+fov = 132.79
