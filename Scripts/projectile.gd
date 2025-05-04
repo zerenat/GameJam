@@ -8,6 +8,7 @@ var damage = 10
 
 
 
+
 func _physics_process(delta):
 	if target and is_instance_valid(target):
 		var direction = (target.global_transform.origin - global_transform.origin).normalized()

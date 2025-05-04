@@ -11,6 +11,7 @@ var enemies_in_range = [] # This is an array
 @export var damage_interval = 1.0 # Seconds where the tower deals damage at each interval. So every 1s, the tower will deal damage to the enemy.
 @export var damage_amount = 10
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Connect signals to my functions for when a body enters or exits the area - basically detection of enemies coming in and out of the detection area (Area3D node)
@@ -54,11 +55,12 @@ func _on_body_exited(body):
 func _on_timer_timeout():
 	if current_target != null and is_instance_valid(current_target): # If there's a valid target
 		# Emit the signal when the timer times out
-		
 		# emit_signal("enemy_takes_damage", current_target, damage_amount)
 		
-		# PROJECTILE TRY - SPAWN A PROJECTILE:
 		
+		
+		
+		# PROJECTILE TRY - SPAWN A PROJECTILE:		
 		var projectile_scene = preload("res://Scenes/projectile.tscn") # Loads projectile scene
 		var projectile = projectile_scene.instantiate() # Creates a new projectile
 		projectile.target = current_target # Which enemy to follow
