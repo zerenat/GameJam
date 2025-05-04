@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://b83ipelndatxe"]
+
+[ext_resource type="PackedScene" uid="uid://cumwaocbxgmau" path="res://Assets/3D assets/Castle.glb" id="1_5a7ea"]
+[ext_resource type="PackedScene" uid="uid://c32oehrmywsf1" path="res://Assets/3D assets/Play_Field.glb" id="2_8j60k"]
+[ext_resource type="PackedScene" uid="uid://noeqyhud2dtu" path="res://Assets/3D assets/Stone_Walls.glb" id="3_fo5ed"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5ukr8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o06y3"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="World" type="Node3D"]
+
+[node name="World" type="Node" parent="."]
+
+[node name="Castle" parent="World" instance=ExtResource("1_5a7ea")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -9.473)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Castle"]
+transform = Transform3D(1.82706, 0, 0, 0, -2.18557e-08, -1.06214, 0, 0.5, -4.64276e-08, -0.026709, 0.694825, -0.175605)
+mesh = SubResource("PlaneMesh_5ukr8")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_o06y3")
+
+[node name="Play_Field" parent="World" instance=ExtResource("2_8j60k")]
+
+[node name="Stone_Walls" parent="World" instance=ExtResource("3_fo5ed")]
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, -0.004)

@@ -14,3 +14,18 @@ config/name="Game Jam 1"
 run/main_scene="uid://byar7pxdk55ax"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalSettings="*res://Scripts/GlobalSettings.gd"
+
+[input]
+
+space_button_press={
+"deadzone": 0.2,
+"events": []
+}
+
+[rendering]
+
+anti_aliasing/quality/msaa_3d=2
