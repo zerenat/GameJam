@@ -1,15 +1,15 @@
 extends Node3D
 
 # Define the signal that the enemy will hear to prompt it to take damage
-signal enemy_takes_damage(current_target, damage_amount)
+#signal enemy_takes_damage(current_target, damage_amount)
 
 @onready var crystal_animation_tree: AnimationTree = $Shooting_Tower/Crystal/CrystalAnimationPlayer/CrystalAnimationTree
 
 
 var current_target = null # this variable stores a reference to the enemy that the tower is currently targeting
 var enemies_in_range = [] # This is an array
-var damage_interval = 1.0 # Seconds where the tower deals damage at each interval. So every 1s, the tower will deal damage to the enemy.
-var damage_amount = 10
+@export var damage_interval = 1.0 # Seconds where the tower deals damage at each interval. So every 1s, the tower will deal damage to the enemy.
+@export var damage_amount = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,6 +34,7 @@ func _on_body_entered(body):
 			current_target = body # store the enemy ref
 			print(current_target.name, " is now the target.")
 			#emit_signal("enemy_takes_damage", current_target, 10)
+			_on_timer_timeout() # FIRE IMMEDIATELY!
 		
 		
 func _on_body_exited(body):
@@ -54,7 +55,7 @@ func _on_timer_timeout():
 	if current_target != null and is_instance_valid(current_target): # If there's a valid target
 		# Emit the signal when the timer times out
 		
-		emit_signal("enemy_takes_damage", current_target, damage_amount)
+		# emit_signal("enemy_takes_damage", current_target, damage_amount)
 		
 		# PROJECTILE TRY - SPAWN A PROJECTILE:
 		
@@ -63,9 +64,13 @@ func _on_timer_timeout():
 		projectile.target = current_target # Which enemy to follow
 		projectile.damage = damage_amount # How much damage to deal
 		
+		# Connect signal so enemy listens to it
+		projectile.enemy_takes_damage.connect(current_target._on_tower_enemy_takes_damage)
+		
 		# Position the projectile
-		projectile.global_transform.origin = $Shooting_Tower/Crystal.global_transform.origin # Uses the crystal as the point of origin
 		get_tree().current_scene.add_child(projectile) # This adds the projectile into the game world
+		projectile.global_transform.origin = $Shooting_Tower/Crystal.global_transform.origin # Uses the crystal as the point of origin
+		
 		
 		
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b14nvls73fl7t"]
+[gd_scene load_steps=12 format=3 uid="uid://b14nvls73fl7t"]
 
 [ext_resource type="PackedScene" uid="uid://b63di5jtddat4" path="res://Scenes/simon_tower_placeholder.tscn" id="1_4ca6a"]
 [ext_resource type="PackedScene" uid="uid://b83ipelndatxe" path="res://Scenes/simon_world_placeholder.tscn" id="2_nfdbn"]
@@ -64,11 +64,28 @@ tracks/0/keys = {
 "values": [Vector3(0, 0.5, 9), Vector3(0, 0.5, 5.34089), Vector3(3.3892, 0.5, 5.34089), Vector3(3.3892, 0.5, -1.81891), Vector3(0.0224409, 0.5, -1.81891), Vector3(0.0224409, 0.5, -6.79879)]
 }
 
+[sub_resource type="Animation" id="Animation_nfdbn"]
+resource_name = "move3"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.03333, 9.2, 14.0667, 19.3667, 25.2, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.5, 9), Vector3(0, 0.5, 5.39766), Vector3(-3.45411, 0.5, 5.39766), Vector3(-3.45411, 0.5, -1.89642), Vector3(0.0264454, 0.5, -1.89642), Vector3(0.0264454, 0.5, -7.08619)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hwftj"]
 _data = {
 &"RESET": SubResource("Animation_m4cax"),
 &"move": SubResource("Animation_fibls"),
-&"move2": SubResource("Animation_4ca6a")
+&"move2": SubResource("Animation_4ca6a"),
+&"move3": SubResource("Animation_nfdbn")
 }
 
 [node name="MainMarjoScene" type="Node3D"]
@@ -82,6 +99,7 @@ shadow_enabled = true
 
 [node name="Tower" parent="." instance=ExtResource("1_4ca6a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+damage_interval = 0.51
 
 [node name="World" parent="." instance=ExtResource("2_nfdbn")]
 
@@ -103,11 +121,18 @@ libraries = {
 }
 autoplay = "move2"
 
+[node name="Enemy 3" parent="." instance=ExtResource("3_xccw4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 9)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy 3"]
+libraries = {
+&"": SubResource("AnimationLibrary_hwftj")
+}
+autoplay = "move3"
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.56243, -0.296705, 0.771776, 0, 0.933399, 0.35884, -0.826845, -0.201823, 0.524971, 9.25444, 5.68764, 7.70908)
 projection = 1
 size = 13.938
 near = 0.049
 far = 256.55
-
-[connection signal="enemy_takes_damage" from="Tower" to="Enemy 1" method="_on_tower_enemy_takes_damage"]

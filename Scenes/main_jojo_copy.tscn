@@ -157,5 +157,3 @@ libraries = {
 &"": SubResource("AnimationLibrary_f4ayq")
 }
 autoplay = "move"
-
-[connection signal="enemy_takes_damage" from="Tower2" to="Enemy 2" method="_on_tower_2_enemy_takes_damage"]
