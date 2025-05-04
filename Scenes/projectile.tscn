@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://og748vkdc5we"]
+
+[ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_f8cdk"]
+[ext_resource type="PackedScene" uid="uid://dp4euvi4gcf3p" path="res://Scenes/Bolt.tscn" id="2_yr2qt"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_at5ip"]
+radius = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f8cdk"]
+albedo_color = Color(0.55811, 0.000231124, 0.559967, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_yr2qt"]
+material = SubResource("StandardMaterial3D_f8cdk")
+radius = 0.3
+height = 0.581
+
+[node name="Projectile" type="Area3D"]
+script = ExtResource("1_f8cdk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_at5ip")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_yr2qt")
+
+[node name="Bolt" parent="." instance=ExtResource("2_yr2qt")]

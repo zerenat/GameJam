@@ -1,61 +1,62 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyh2abn7682t"]
+[gd_scene load_steps=9 format=3 uid="uid://byar7pxdk55ax"]
 
-[ext_resource type="PackedScene" uid="uid://d0bhddcrgymwp" path="res://Assets/3D assets/Castle.blend" id="1_jjgbg"]
-[ext_resource type="PackedScene" uid="uid://ditfb7c5a5gml" path="res://Assets/3D assets/Enemy.blend" id="2_bo1nx"]
+[ext_resource type="PackedScene" path="res://Scenes/user_interface.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://cd3u0hwcf4qha" path="res://Scenes/simon_world_placeholder.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://b63di5jtddat4" path="res://Scenes/simon_tower_placeholder.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://rhk2g36uc1p2" path="res://Scenes/enemy.tscn" id="4_jjvhh"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bo1nx"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jjvhh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
-[sub_resource type="Sky" id="Sky_8gbba"]
-sky_material = SubResource("ProceduralSkyMaterial_bo1nx")
+[sub_resource type="Sky" id="Sky_kry3j"]
+sky_material = SubResource("ProceduralSkyMaterial_jjvhh")
 
-[sub_resource type="Environment" id="Environment_jjvhh"]
-background_mode = 1
-background_color = Color(0.532208, 0.896997, 1, 1)
-background_energy_multiplier = 0.75
-sky = SubResource("Sky_8gbba")
-ambient_light_source = 1
-ambient_light_color = Color(0.808998, 0.808998, 0.808998, 1)
-ambient_light_energy = 0.75
+[sub_resource type="Environment" id="Environment_21xkr"]
+background_mode = 2
+sky = SubResource("Sky_kry3j")
 tonemap_mode = 2
-ssao_enabled = true
-sdfgi_enabled = true
-sdfgi_energy = 0.5
 glow_enabled = true
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_kry3j"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_21xkr"]
+[sub_resource type="Curve3D" id="Curve3D_jjvhh"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 3.87594, 0, 0, 0, 0, 0, 0, -0.0476356, 0, 0.117973, 0, 0, 0, 0, 0, 0, 3.60312, 0, 0, 0, 0, 0, 0, 0, 0, 3.52831, 0, -7.04331, 0, 0, 0, 0, 0, 0, 0.00245667, 0, -7.38322, 0, 0, 0, 0, 0, 0, -0.0684218, 0, -12.6082),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
 
 [node name="Main" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_jjvhh")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.833886, 0.351075, -0.425888, 0, 0.771625, 0.636078, 0.551937, -0.530417, 0.643447, 0, 14.0771, 0)
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
-shadow_normal_bias = 0.0
-shadow_blur = 0.5
-directional_shadow_blend_splits = true
-directional_shadow_max_distance = 80.0
-directional_shadow_pancake_size = 5.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_21xkr")
+
+[node name="UserInterface" parent="." instance=ExtResource("1_jjgbg")]
+
+[node name="World" parent="." instance=ExtResource("2_bo1nx")]
+
+[node name="Tower" parent="." instance=ExtResource("3_8gbba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.99195)
+damage_interval = 0.5
+damage_amount = 15
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.19688)
+curve = SubResource("Curve3D_jjvhh")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(0.999907, 0, 0.0126747, 0, 1, 0, -0.0126747, 0, 0.999907, 0, 0, 3.87594)
+loop = false
+
+[node name="Enemy" parent="Path3D/PathFollow3D" instance=ExtResource("4_jjvhh")]
+transform = Transform3D(0.99992, 0, -0.0126749, 0, 1, 0, 0.0126749, 0, 0.99992, -0.000783756, 0, 0.0618305)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 28.51, 39.704, 29.105)
-fov = 19.8
-
-[node name="Ground" type="MeshInstance3D" parent="."]
-transform = Transform3D(7.90337, 0, 0, 0, 8.19666, 0, 0, 0, 8.30956, 0.0872254, 0.0117895, 0.306348)
-mesh = SubResource("PlaneMesh_kry3j")
-
-[node name="Tower" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 1.66802, 0, 0, 0, 2, 0, 1.46523, 2.17)
-mesh = SubResource("CylinderMesh_21xkr")
-
-[node name="Castle" parent="." instance=ExtResource("1_jjgbg")]
-transform = Transform3D(1.56193, 0, 0, 0, 1.61989, 0, 0, 0, 1.64221, -0.0884737, -0.00278952, -7.17696)
-
-[node name="Enemy" parent="." instance=ExtResource("2_bo1nx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0429688, 0, 7.93933)
+transform = Transform3D(0.707452, -0.285075, 0.646718, 0, 0.915044, 0.403354, -0.706761, -0.285353, 0.64735, 9.73615, 7.47327, 10.002)
+projection = 1
+size = 15.545
+near = 0.001
+far = 54.29

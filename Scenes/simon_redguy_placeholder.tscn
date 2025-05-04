@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://iobte01y35ja"]
+
+[ext_resource type="PackedScene" uid="uid://dfait1rw22dsr" path="res://Assets/3D assets/Red_Guy.glb" id="1_lutar"]
+
+[sub_resource type="Animation" id="Animation_vo5k6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Red_Guy:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0872665)]
+}
+
+[sub_resource type="Animation" id="Animation_cjl8r"]
+resource_name = "RedGuyWalking"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Red_Guy:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0872665), Vector3(0, 0, -0.0872665), Vector3(0, 0, 0.0872665)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ljfho"]
+_data = {
+&"RESET": SubResource("Animation_vo5k6"),
+&"RedGuyWalking": SubResource("Animation_cjl8r")
+}
+
+[node name="Simple_Enemy" type="Node3D"]
+
+[node name="Red_Guy" parent="." instance=ExtResource("1_lutar")]
+transform = Transform3D(0.996195, -0.0871558, 0, 0.0871558, 0.996195, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="RedGuyAnimation" type="AnimationPlayer" parent="Red_Guy"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_ljfho")
+}
+autoplay = "RedGuyWalking"
