@@ -1,19 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://b14nvls73fl7t"]
+[gd_scene load_steps=11 format=3 uid="uid://cf8wsyn2ymmvo"]
 
-[ext_resource type="PackedScene" uid="uid://b63di5jtddat4" path="res://Scenes/simon_tower_placeholder.tscn" id="1_4ca6a"]
-[ext_resource type="PackedScene" uid="uid://b83ipelndatxe" path="res://Scenes/simon_world_placeholder.tscn" id="2_nfdbn"]
-[ext_resource type="PackedScene" uid="uid://myewnpwt2f10" path="res://Scenes/enemy_1.tscn" id="3_xccw4"]
+[ext_resource type="PackedScene" uid="uid://b63di5jtddat4" path="res://Scenes/simon_tower_placeholder.tscn" id="1_h4v0c"]
+[ext_resource type="PackedScene" uid="uid://b83ipelndatxe" path="res://Scenes/simon_world_placeholder.tscn" id="2_ggtu1"]
+[ext_resource type="PackedScene" uid="uid://myewnpwt2f10" path="res://Scenes/enemy_1.tscn" id="3_47d17"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4ca6a"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ixti0"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
-[sub_resource type="Sky" id="Sky_nfdbn"]
-sky_material = SubResource("ProceduralSkyMaterial_4ca6a")
+[sub_resource type="Sky" id="Sky_jbgme"]
+sky_material = SubResource("ProceduralSkyMaterial_ixti0")
 
-[sub_resource type="Environment" id="Environment_xccw4"]
+[sub_resource type="Environment" id="Environment_7kffp"]
 background_mode = 2
-sky = SubResource("Sky_nfdbn")
+sky = SubResource("Sky_jbgme")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -71,21 +71,21 @@ _data = {
 &"move2": SubResource("Animation_4ca6a")
 }
 
-[node name="MainMarjoScene" type="Node3D"]
+[node name="MainMarjoScene2" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_xccw4")
+environment = SubResource("Environment_7kffp")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Tower" parent="." instance=ExtResource("1_4ca6a")]
+[node name="Tower" parent="." instance=ExtResource("1_h4v0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
-[node name="World" parent="." instance=ExtResource("2_nfdbn")]
+[node name="World" parent="." instance=ExtResource("2_ggtu1")]
 
-[node name="Enemy 1" parent="." instance=ExtResource("3_xccw4")]
+[node name="Enemy 1" parent="." instance=ExtResource("3_47d17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 9)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy 1"]
@@ -94,7 +94,7 @@ libraries = {
 }
 autoplay = "move"
 
-[node name="Enemy 2" parent="." instance=ExtResource("3_xccw4")]
+[node name="Enemy 2" parent="." instance=ExtResource("3_47d17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 9)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy 2"]

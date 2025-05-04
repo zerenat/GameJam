@@ -56,6 +56,20 @@ func _on_timer_timeout():
 		
 		emit_signal("enemy_takes_damage", current_target, damage_amount)
 		
+		# PROJECTILE TRY - SPAWN A PROJECTILE:
+		
+		var projectile_scene = preload("res://Scenes/projectile.tscn") # Loads projectile scene
+		var projectile = projectile_scene.instantiate() # Creates a new projectile
+		projectile.target = current_target # Which enemy to follow
+		projectile.damage = damage_amount # How much damage to deal
+		
+		# Position the projectile
+		projectile.global_transform.origin = $Shooting_Tower/Crystal.global_transform.origin # Uses the crystal as the point of origin
+		get_tree().current_scene.add_child(projectile) # This adds the projectile into the game world
+		
+		
+		
+		
 		# Play the OneShot attack animation
 		if crystal_animation_tree != null:
 			crystal_animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
