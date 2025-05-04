@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b83ipelndatxe"]
+[gd_scene load_steps=7 format=3 uid="uid://5nkbv10agfh5"]
 
 [ext_resource type="PackedScene" uid="uid://cumwaocbxgmau" path="res://Assets/3D assets/Castle.glb" id="1_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://c32oehrmywsf1" path="res://Assets/3D assets/Play_Field.glb" id="2_8j60k"]
 [ext_resource type="PackedScene" uid="uid://noeqyhud2dtu" path="res://Assets/3D assets/Stone_Walls.glb" id="3_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://ct1f0rs4bnkpf" path="res://Scenes/simon_tower_placeholder.tscn" id="4_7w4xl"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5ukr8"]
 
@@ -12,6 +13,9 @@ albedo_color = Color(0, 0, 0, 1)
 [node name="World" type="Node3D"]
 
 [node name="World" type="Node" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 0.785976, 0.618258, 0, -0.618258, 0.785976, 0, 12.7495, 16.5929)
 
 [node name="Castle" parent="World" instance=ExtResource("1_5a7ea")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -9.473)
@@ -26,3 +30,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_o06y3")
 
 [node name="Stone_Walls" parent="World" instance=ExtResource("3_fo5ed")]
 transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, -0.004)
+
+[node name="Tower" parent="." instance=ExtResource("4_7w4xl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103333, 0, 1.83801)
