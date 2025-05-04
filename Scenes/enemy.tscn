@@ -1,17 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://rhk2g36uc1p2"]
 
-[ext_resource type="PackedScene" uid="uid://ditfb7c5a5gml" path="res://Assets/3D assets/Enemy.blend" id="1_1f0kj"]
+[ext_resource type="PackedScene" uid="uid://iobte01y35ja" path="res://Scenes/simon_redguy_placeholder.tscn" id="2_1f0kj"]
 [ext_resource type="Script" uid="uid://d0yh7qnbue75u" path="res://Scripts/enemy.gd" id="2_afpow"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_287tu"]
 size = Vector3(1.00008, 0.957827, 0.958984)
 
-[node name="Enemy" type="CharacterBody3D"]
-
-[node name="Enemy" parent="." instance=ExtResource("1_1f0kj")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+[node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("2_afpow")
-target = NodePath("../../Castle")
+
+[node name="Simple_Enemy" parent="." instance=ExtResource("2_1f0kj")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00398809, 0.496863, 0.0205078)

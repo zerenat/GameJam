@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://mqugijbh610k"]
+[gd_scene load_steps=6 format=3 uid="uid://b76dll0birwmx"]
 
-[ext_resource type="Script" uid="uid://ebgpub8h4alm" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_28flt"]
 [ext_resource type="PackedScene" uid="uid://da25or04alwqn" path="res://Scenes/settings_menu.tscn" id="2_1ehe0"]
-[ext_resource type="Script" uid="uid://b1p7wrpsbv3fs" path="res://Scripts/camera_animation.gd" id="2_48xlc"]
-[ext_resource type="PackedScene" uid="uid://5nkbv10agfh5" path="res://Scenes/simon_world_placeholder.tscn" id="4_n45e2"]
-[ext_resource type="PackedScene" uid="uid://gnkixs8qutji" path="res://Assets/3D assets/Shooting_Tower.glb" id="5_n45e2"]
-[ext_resource type="PackedScene" uid="uid://dou2ps3pap0kk" path="res://Assets/3D assets/Crystal.glb" id="6_opfnp"]
+[ext_resource type="Script" path="res://Scripts/camera_animation.gd" id="2_48xlc"]
+[ext_resource type="PackedScene" uid="uid://cd3u0hwcf4qha" path="res://Scenes/simon_world_placeholder.tscn" id="4_n45e2"]
 
 [sub_resource type="Environment" id="Environment_cp0ys"]
 background_energy_multiplier = 0.36
@@ -67,12 +65,6 @@ near = 0.007
 far = 43.94
 
 [node name="World" parent="CameraAnimation" instance=ExtResource("4_n45e2")]
-
-[node name="Shooting_Tower" parent="CameraAnimation" instance=ExtResource("5_n45e2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.12304)
-
-[node name="Crystal" parent="CameraAnimation" instance=ExtResource("6_opfnp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.15213, 1.95798)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5089, 4.1173)

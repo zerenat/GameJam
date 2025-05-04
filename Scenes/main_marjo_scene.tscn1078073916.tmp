@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b63di5jtddat4" path="res://Scenes/simon_tower_placeholder.tscn" id="1_4ca6a"]
 [ext_resource type="PackedScene" uid="uid://cd3u0hwcf4qha" path="res://Scenes/simon_world_placeholder.tscn" id="2_nfdbn"]
-[ext_resource type="PackedScene" uid="uid://b2vuo36y7nrlr" path="res://Scenes/enemy_1.tscn" id="3_xccw4"]
+[ext_resource type="PackedScene" path="res://Scenes/enemy_1.tscn" id="3_xccw4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4ca6a"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)

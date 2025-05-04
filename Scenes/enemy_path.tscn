@@ -18,7 +18,7 @@ point_count = 4
 curve = SubResource("Curve3D_l0x3t")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.186087, 0.0929333, -0.978112, -0.0460639, 0.993575, 0.103167, 0.981434, 0.0642545, -0.180615, 1.31965, 0.230614, -2.27143)
+transform = Transform3D(-0.186087, 0.0929333, -0.978111, -0.0460639, 0.993575, 0.103167, 0.981434, 0.0642545, -0.180615, 1.31965, 0.230614, -2.27143)
 progress = 4.40629
 
 [node name="Cube" type="MeshInstance3D" parent="Path3D/PathFollow3D"]

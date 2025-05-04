@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://og748vkdc5we"]
+[gd_scene load_steps=6 format=3 uid="uid://og748vkdc5we"]
 
-[ext_resource type="Script" uid="uid://coa187kkp52gw" path="res://Scripts/projectile.gd" id="1_f8cdk"]
+[ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_f8cdk"]
+[ext_resource type="PackedScene" uid="uid://dp4euvi4gcf3p" path="res://Scenes/Bolt.tscn" id="2_yr2qt"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_at5ip"]
 radius = 0.3
@@ -20,4 +21,7 @@ script = ExtResource("1_f8cdk")
 shape = SubResource("SphereShape3D_at5ip")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("SphereMesh_yr2qt")
+
+[node name="Bolt" parent="." instance=ExtResource("2_yr2qt")]
