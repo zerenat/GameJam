@@ -1,34 +1,46 @@
 [gd_scene load_steps=4 format=3 uid="uid://3fwvouob25ue"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tejdp"]
-direction = Vector3(0, 1, 0)
+lifetime_randomness = 1.0
+direction = Vector3(0, 3, 0)
 spread = 90.0
-initial_velocity_min = 1.2
-initial_velocity_max = 3.65
-gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -9, 0)
 radial_accel_min = -7.37
 radial_accel_max = -2.23517e-06
 damping_min = 1.764
 damping_max = 8.823
 turbulence_noise_strength = 2.04
 turbulence_noise_speed_random = 4.0
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x1jjj"]
-transparency = 1
-albedo_color = Color(0.721569, 0, 0.25098, 0.796078)
+shading_mode = 0
+albedo_color = Color(0.633434, 0, 0.217708, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_kg0ev"]
+[sub_resource type="BoxMesh" id="BoxMesh_x1jjj"]
 material = SubResource("StandardMaterial3D_x1jjj")
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="Enemy_Death" type="Node3D"]
+[node name="enemy_death" type="Node3D"]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+lod_bias = 0.001
 emitting = false
-amount = 40
-interp_to_end = 0.05
+amount = 100
+lifetime = 2.0
 one_shot = true
+speed_scale = 1.5
 explosiveness = 1.0
 randomness = 1.0
+collision_base_size = 0.02
 process_material = SubResource("ParticleProcessMaterial_tejdp")
-draw_pass_1 = SubResource("BoxMesh_kg0ev")
+draw_pass_1 = SubResource("BoxMesh_x1jjj")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.376589, 0)
+size = Vector3(20.4612, 1.33984, 20.3018)
